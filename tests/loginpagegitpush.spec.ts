@@ -1,13 +1,11 @@
-import {test} from '@playwright/test';
+import {test} from '@playwright/test'
+test('login to salesforce', async({page})=>{
 
-test.only('Launch the browser',async({page})=>
-    {
-    await page.goto("https://www.amazon.com/")
-    await page.waitForLoadState('domcontentloaded')
-    const title=await page.title()
-    console.log(title)
-    const url =page.url()
-    console.log(url)
-    await page.waitForTimeout(5000)
-    
+    await page.goto('https://login.salesforce.com/?locale=in')
+    await page.locator('#username').fill('dilipkumar.rajendran@testleaf.com')
+    await page.locator('input[id="password"]').fill('TestLeaf@2025')
+    await page.locator('input[id="Login"]').click()
+    await page.waitForTimeout(12000)
+    await page.locator('[title="App Launcher"]').click
+
 })
